@@ -1,4 +1,85 @@
-/* Game & Narrative UI Styles */
+/* Contact Me Section */
+.contact-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-btn {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #44aaff;
+    color: #44aaff;
+    padding: 8px 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    /* Sci-fi styling */
+    box-shadow: 0 0 10px rgba(68, 170, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-btn:hover,
+.contact-btn.active {
+    background: rgba(68, 170, 255, 0.15);
+    box-shadow: 0 0 20px rgba(68, 170, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.contact-panel {
+    background: rgba(10, 20, 30, 0.95);
+    border: 1px solid #44aaff;
+    border-radius: 4px;
+    padding: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 320px;
+    box-shadow: 0 0 15px rgba(68, 170, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.contact-panel.open {
+    max-height: 200px;
+    opacity: 1;
+    padding: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: #ddd;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-item a:hover {
+    color: #44aaff;
+    text-shadow: 0 0 5px #44aaff;
+}
 
 /* 1. The "Yes" Button */
 .yes-button {

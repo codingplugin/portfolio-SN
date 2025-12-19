@@ -8,7 +8,7 @@ import { Satellites, ACTION_DATA } from './components/Satellites';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 
-import { ShieldAlert } from 'lucide-react';
+import { ShieldAlert, Mail, Linkedin } from 'lucide-react';
 import * as THREE from 'three';
 
 const CameraController = ({ phase, focus }) => {
@@ -97,7 +97,7 @@ const Typewriter = ({ text, speed = 100, onComplete }) => {
       }
     }, speed);
     return () => clearInterval(timer);
-  }, [text, speed]); // Intentionally excluding onComplete to avoid re-runs if inline function changes
+  }, [text, speed]);
 
   return (
     <span style={{ borderRight: '2px solid #44ffaa', paddingRight: '5px', animation: 'blink 1s step-end infinite' }}>
@@ -107,9 +107,6 @@ const Typewriter = ({ text, speed = 100, onComplete }) => {
 };
 
 function App() {
-  // ... (existing code: useState, useEffects)
-  // ... check matching logic ... 
-
   // Phases: 'beauty', 'threat_alert', 'defense', 'victory', 'intro'
   const [phase, setPhase] = useState('beauty');
   const [hits, setHits] = useState(0);
@@ -122,6 +119,7 @@ function App() {
   const [showContinue, setShowContinue] = useState(false);
   const [exploreFocus, setExploreFocus] = useState(null);
   const [viewImage, setViewImage] = useState(null);
+  const [contactOpen, setContactOpen] = useState(false);
 
 
   const handleSkip = () => {
@@ -588,6 +586,29 @@ function App() {
           {phase === 'explore' ? (exploreFocus ? 'Close' : 'Back') : 'Skip'}
         </button>
       )}
+
+      {/* Contact Me Section - Always Visible */}
+      <div className="contact-wrapper">
+        <div className={`contact-panel ${contactOpen ? 'open' : ''}`}>
+          <div className="contact-item">
+            <Mail size={16} color="#44ffaa" />
+            <a href="mailto:nandisubhradip01@gmail.com">nandisubhradip01@gmail.com</a>
+          </div>
+          <div className="contact-item">
+            <Linkedin size={16} color="#44ffaa" />
+            <a href="https://linkedin.com/in/subhradip-nandi-038b3a2b7" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <button
+          className={`contact-btn ${contactOpen ? 'active' : ''}`}
+          onClick={() => setContactOpen(!contactOpen)}
+        >
+          CONTACT ME
+        </button>
+      </div>
+
     </div>
   );
 }
