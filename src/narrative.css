@@ -1,0 +1,374 @@
+/* Game & Narrative UI Styles */
+
+/* 1. The "Yes" Button */
+.yes-button {
+    position: absolute;
+    top: 90px;
+    right: 60px;
+    background: transparent;
+    border: 1px solid #44aaff;
+    color: #44aaff;
+    padding: 10px 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeInBtn 1s ease-out forwards;
+    animation-delay: 5s;
+    /* Appears after text */
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.yes-button:hover {
+    background: rgba(68, 170, 255, 0.2);
+    box-shadow: 0 0 15px #44aaff;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInBtn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* 2. Red Alert Box */
+.alert-box {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    width: 300px;
+    background: rgba(50, 0, 0, 0.9);
+    border: 2px solid #ff3333;
+    color: #ff3333;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    animation: panicAlert 0.2s infinite alternate;
+    /* Fast blinking effect */
+    z-index: 2000;
+}
+
+@keyframes panicAlert {
+    0% {
+        opacity: 0;
+        background: rgba(50, 0, 0, 0.5);
+    }
+
+    100% {
+        opacity: 1;
+        background: rgba(100, 0, 0, 0.9);
+    }
+}
+
+.alert-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ff3333;
+    padding-bottom: 5px;
+}
+
+/* 3. Defense Instruction */
+.defense-hud {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffaa00;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px #ff0000;
+    z-index: 2000;
+}
+
+.press-space {
+    font-size: 2rem;
+    font-weight: bold;
+    animation: pulseText 0.2s infinite alternate;
+}
+
+@keyframes pulseText {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* 4. Victory Message */
+.victory-msg {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: #44ffaa;
+    text-shadow: 0 0 20px #44ffaa;
+    animation: floatUp 3s forwards;
+}
+
+/* 5. Professional Intro Card (Final Stage) */
+.intro-container {
+    position: absolute;
+    /* Fix broken layout */
+    /* Center in the right half (75% of screen width) */
+    left: 75%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    max-width: 90%;
+    /* Responsive */
+    background: rgba(10, 20, 30, 0.01);
+    /* Almost transparent */
+    backdrop-filter: blur(2px);
+    /* Minimal blur */
+    border: 1px solid rgba(68, 170, 255, 0.3);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(68, 170, 255, 0.05);
+    padding: 40px;
+    border-radius: 2px;
+    /* Sharp corners for block look */
+    /* 3D Cuboid Effect */
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) perspective(1000px) rotateY(-10deg);
+    color: white;
+    text-align: left;
+    /* Align text left */
+    opacity: 0;
+    animation: fadeInIntro 1.5s ease-out forwards;
+    animation-delay: 1s;
+    z-index: 2000;
+    pointer-events: none;
+    /* Allow clicks to pass through to Earth */
+}
+
+/* Re-enable pointer events for content interaction */
+.intro-container>* {
+    pointer-events: auto;
+}
+
+/* Add decorative HUD corner brackets */
+.intro-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #44aaff;
+    border-left: 3px solid #44aaff;
+}
+
+.intro-container::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 3px solid #44aaff;
+    border-right: 3px solid #44aaff;
+}
+
+.intro-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff, #44aaff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro-role {
+    font-size: 1.2rem;
+    color: #88ccff;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.intro-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 30px;
+}
+
+.intro-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.stat-item h4 {
+    color: #44aaff;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.stat-item p {
+    color: #aaa;
+    margin: 5px 0 0 0;
+    font-size: 0.8rem;
+}
+
+@keyframes fadeInIntro {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 6. Skip Button */
+.skip-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(68, 170, 255, 0.5);
+    color: #44aaff;
+    padding: 8px 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 3000;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.skip-button:hover {
+    opacity: 1;
+    background: rgba(68, 170, 255, 0.2);
+    box-shadow: 0 0 10px rgba(68, 170, 255, 0.3);
+}
+
+/* 7. Explore Button inside Intro Panel */
+.explore-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid #44ffaa;
+    color: #44ffaa;
+    padding: 8px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.explore-button:hover {
+    background: rgba(68, 255, 170, 0.2);
+    box-shadow: 0 0 15px rgba(68, 255, 170, 0.4);
+    transform: translateX(2px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .intro-container {
+        left: 50% !important;
+        top: auto !important;
+        bottom: 10px !important;
+        width: 95% !important;
+        max-width: 95% !important;
+        transform: translate(-50%, 0) !important;
+        padding: 20px 15px 15px 15px !important;
+        max-height: 60vh !important;
+        backdrop-filter: blur(10px);
+        background: rgba(10, 20, 30, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.6);
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .intro-name {
+        font-size: 1.6rem !important;
+        margin-bottom: 5px;
+        flex-shrink: 0;
+    }
+
+    .intro-role {
+        font-size: 0.8rem !important;
+        margin-bottom: 15px;
+        flex-shrink: 0;
+    }
+
+    .intro-desc {
+        flex: 1;
+        overflow-y: auto;
+        font-size: 0.85rem !important;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        padding-right: 5px;
+    }
+
+    .intro-stats {
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+
+    .stat-item h4 {
+        font-size: 1.1rem;
+    }
+
+    /* Adjust yes button for Beauty phase */
+    .yes-button {
+        top: auto;
+        bottom: 15%;
+        right: 50%;
+        transform: translateX(50%);
+        width: 200px;
+        text-align: center;
+    }
+
+    /* Center Alert Box */
+    .alert-box {
+        width: 90%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Center HUD */
+    .defense-hud {
+        width: 100%;
+        bottom: 150px;
+    }
+
+    /* Ensure explore button is clickable and sized */
+    .explore-button {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}
